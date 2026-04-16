@@ -28,20 +28,17 @@ html { scroll-behavior: smooth; }
   --font-mono:    'IBM Plex Mono', monospace;
 }
 
+html {
+  font-size: 15px;
+}
+
 body {
   font-family: var(--font-body);
   background: var(--paper);
   color: var(--ink);
   min-height: 100vh;
   line-height: 1.6;
-  font-size: var(--base-font-size, 15px);
 }
-
-/* ── Font size scale ── */
-body.fs-sm { --base-font-size: 13px; }
-body.fs-md { --base-font-size: 15px; }
-body.fs-lg { --base-font-size: 17px; }
-body.fs-xl { --base-font-size: 19px; }
 
 /* ── Font Size Control Widget ── */
 .font-size-control {
