@@ -21,6 +21,14 @@
         <a href="../../index.html">首頁</a>
         <a href="../logistics-analyzer/index.html">物流分析</a>
         <a href="index.html" class="nav-active">壓賠整合</a>
+        <div class="font-size-control" title="調整字體大小">
+          <span class="fsc-label">字級</span>
+          <div class="fsc-divider"></div>
+          <button class="fsc-btn" data-size="fs-sm" title="小">A</button>
+          <button class="fsc-btn active" data-size="fs-md" title="中" style="font-size:14px">A</button>
+          <button class="fsc-btn" data-size="fs-lg" title="大" style="font-size:16px">A</button>
+          <button class="fsc-btn" data-size="fs-xl" title="特大" style="font-size:18px">A</button>
+        </div>
       </nav>
     </div>
   </header>
@@ -138,5 +146,21 @@
   </footer>
 
   <script src="app.js"></script>
+  <script>
+    // ── Font size control ──────────────────────────────────
+    const STORAGE_KEY = 'opshub_fontsize';
+    const btns = document.querySelectorAll('.fsc-btn[data-size]');
+    const savedSize = localStorage.getItem(STORAGE_KEY) || 'fs-md';
+
+    function applySize(size) {
+      document.body.classList.remove('fs-sm','fs-md','fs-lg','fs-xl');
+      document.body.classList.add(size);
+      btns.forEach(b => b.classList.toggle('active', b.dataset.size === size));
+      localStorage.setItem(STORAGE_KEY, size);
+    }
+
+    applySize(savedSize);
+    btns.forEach(btn => btn.addEventListener('click', () => applySize(btn.dataset.size)));
+  </script>
 </body>
 </html>
