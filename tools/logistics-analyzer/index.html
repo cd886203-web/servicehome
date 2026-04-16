@@ -138,18 +138,18 @@
   <script src="app.js"></script>
   <script>
     // ── Font size control ──────────────────────────────────
+    const SIZE_MAP = { 'fs-sm': '13px', 'fs-md': '15px', 'fs-lg': '18px', 'fs-xl': '21px' };
     const STORAGE_KEY = 'opshub_fontsize';
     const btns = document.querySelectorAll('.fsc-btn[data-size]');
-    const savedSize = localStorage.getItem(STORAGE_KEY) || 'fs-md';
 
     function applySize(size) {
-      document.body.classList.remove('fs-sm','fs-md','fs-lg','fs-xl');
-      document.body.classList.add(size);
+      document.documentElement.style.fontSize = SIZE_MAP[size] || '15px';
       btns.forEach(b => b.classList.toggle('active', b.dataset.size === size));
       localStorage.setItem(STORAGE_KEY, size);
     }
 
-    applySize(savedSize);
+    const saved = localStorage.getItem(STORAGE_KEY) || 'fs-md';
+    applySize(saved);
     btns.forEach(btn => btn.addEventListener('click', () => applySize(btn.dataset.size)));
   </script>
 </body>
